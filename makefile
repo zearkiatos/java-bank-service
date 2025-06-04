@@ -4,6 +4,12 @@ docker-up:
 docker-down:
 	docker compose down
 
+podman-up:
+	podman compose up --build
+
+podman-down:
+	podman compose down
+
 build:
 	javac -d target ./src/main/java/org/example/Main.java
 
