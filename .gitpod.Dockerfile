@@ -1,4 +1,13 @@
 FROM gitpod/workspace-full
 
-RUN apt-get update && apt-get install -y make
+
+USER root
+
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y make \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+USER gitpod
+COPY Makefile .
 RUN make install-env
