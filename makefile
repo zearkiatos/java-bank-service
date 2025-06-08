@@ -11,8 +11,14 @@ podman-down:
 	podman compose down
 
 build:
-	javac -d target ./src/main/java/org/example/Main.java
+	javac -d target `find src/main/java -name "*.java"`
 
 run:
 	make build
 	java -cp target org.example.Main
+
+set-env:
+	sdk env
+
+install-env:
+	sdk env install
