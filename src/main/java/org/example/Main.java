@@ -1,4 +1,6 @@
 package org.example;
+import java.util.ArrayList;
+
 import org.example.Status;
 
 
@@ -10,6 +12,7 @@ public class Main {
         String accountNumber = "123456789";
         double balance = 1500.75;
         int pin = 1234;
+        ArrayList<String> transactionHistory = new ArrayList<>();
 
         int[] transactionAmounts = {200, -100, 50};
 
@@ -22,6 +25,12 @@ public class Main {
         balance++;
         String status = (balance < 0) ? Status.DEBT.name(): Status.CREDIT.name();
         System.out.println("Account Status: " + status);
+
+        deposit(500.0, balance, transactionHistory);
+        withdraw(100.0, balance, transactionHistory);
+        for (String transaction : transactionHistory) {
+            System.out.println(transaction);
+        }
     }
 
     public boolean autenticateUser(String pin) {
@@ -35,5 +44,21 @@ public class Main {
             }
         }
         return false;
+    }
+
+    public static void deposit(Double amount,  double balance, ArrayList<String> transactionHistory) {
+        balance += amount;
+        transactionHistory.add("Deposited: $" + amount);
+    }
+
+    public static boolean withdraw(double amount, double balance, ArrayList<String> transactionHistory) {
+             if (balance >= amount) {
+            balance -= amount;
+            transactionHistory.add("Withdrew: $" + amount);
+            return true;
+        } else {
+            System.out.println("Not enough funds");
+            return false;
+        }
     }
 }
