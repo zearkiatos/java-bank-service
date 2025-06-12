@@ -22,3 +22,9 @@ set-env:
 
 install-env:
 	sdk env install
+
+test:
+	mvn test
+
+install:
+	mvn clean install -U

@@ -21,3 +21,19 @@ build() {
 run() {
     java -cp target org.example.Main
 }
+
+set_env() {
+    sdk env
+}
+
+install_env() {
+    sdk env install
+}
+
+test() {
+    mvn test
+}
+
+install() {
+    mvn clean install -U
+}
