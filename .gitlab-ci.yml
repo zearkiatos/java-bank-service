@@ -1,0 +1,41 @@
+image: openjdk:21-slim
+stages:
+  - test
+  - build
+  - docker
+
+build:
+  image: openjdk:11.0.1-jre
+  stage: build
+  script:
+    - make build
+  artifacts:
+    expire_in: 1hr
+    paths:
+      - /
+
+test:
+  stage: build
+  script:
+    - make test
+  artifacts:
+    expire_in: 1hr
+    paths:
+      - /
+
+build-docker:
+  image: docker:latest
+  variables:
+    DOCKER_DRIVER: overlay
+    CRYPTOGRAPHY_DONT_BUILD_RUST: 1
+  services:
+  - docker:dind
+  stage: docker
+  environment: staging
+  script:
+    - echo "Build docker 🐳"
+    - docker build . -t=java-bank-service:gitlab-build-${CI_PIPELINE_IID}
+  artifacts:
+    expire_in: 1hr
+    paths:
+      - build
