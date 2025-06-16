@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 public class ATMSystemTest {
     @Test
     void testAddAccount() {
-        Account account = new Account();
-        account.setAccountNumber("1234567890");
+        Account account = new Account("1234567890", 1000);
         ATMSystem atmSystem = new ATMSystem();
         atmSystem.addAccount(account);
         

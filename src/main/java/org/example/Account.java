@@ -10,6 +10,11 @@ public class Account {
         this.balance += amount;
     }
 
+    public Account(String accountNumber, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.balance = initialBalance;
+    }
+
     public void withdraw(double amount) throws InsufficientFundsException {
         if (amount > this.balance) {
             throw new InsufficientFundsException();
@@ -27,6 +32,14 @@ public class Account {
 
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }
 
