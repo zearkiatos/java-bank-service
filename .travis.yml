@@ -1,0 +1,14 @@
+language: java
+jdk:
+  - openjdk21
+
+services:
+  - docker
+cache:
+  directories:
+    - $HOME/.m2
+
+script:
+  - make build
+  - make test
+  - docker build . -t=java-bank-service:travis-build-${TRAVIS_BUILD_NUMBER}

@@ -1,5 +1,6 @@
 package org.example;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
@@ -27,7 +28,7 @@ public class AccountTest {
     @Test
     public void testDeposit() {
         String expectedBalance = "Current balance: 100";
-        Account account = new Account();
+        Account account = new Account("123456789", 0);
         account.deposit(100);
 
         account.showBalance();
@@ -38,7 +39,7 @@ public class AccountTest {
     @Test
     public void testWithdraw() {
         String expectedBalance = "Current balance: 50";
-        Account account = new Account();
+        Account account = new Account("123456789", 0);
         account.deposit(100);
         try {
             account.withdraw(50);
@@ -53,7 +54,7 @@ public class AccountTest {
 
     @Test
     public void testWithdrawInsufficientFunds() {
-        Account account = new Account();
+        Account account = new Account("123456789", 0);
         account.deposit(50);
         try {
             account.withdraw(100);
@@ -65,7 +66,7 @@ public class AccountTest {
     @Test
     public void testShowBalance() {
         String expectedBalance = "Current balance: 0.0";
-        Account account = new Account();
+        Account account = new Account("123456789", 0);
 
         account.showBalance();
 
@@ -74,11 +75,29 @@ public class AccountTest {
 
     @Test
     public void testGetAccountNumber() {
-        Account account = new Account();
+        Account account = new Account("123456789", 0);
         String accountNumber = "123456789";
 
         account.setAccountNumber(accountNumber);
         
         assertTrue(account.getAccountNumber().equals(accountNumber));
+    }
+
+    @Test 
+    public void testGetBalance() {
+        Account account = new Account("123456789", 1000);
+        double expectedBalance = 1000.0;
+
+        assertEquals(account.getBalance(), expectedBalance);
+    }
+
+    @Test
+    public void testSetBalance() {
+        Account account = new Account("123456789", 0);
+        double newBalance = 500.0;
+
+        account.setBalance(newBalance);
+
+        assertEquals(account.getBalance(), newBalance);
     }
 }
