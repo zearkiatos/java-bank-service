@@ -2,25 +2,18 @@ package org.example;
 
 import org.example.utils.errorHandle.InsufficientFundsException;
 
-public class Account {
+public abstract class Account {
     private String accountNumber;
     private double balance;
 
-    public void deposit(double amount) {
-        this.balance += amount;
-    }
+    public abstract void deposit(double amount);
 
     public Account(String accountNumber, double initialBalance) {
         this.accountNumber = accountNumber;
         this.balance = initialBalance;
     }
 
-    public void withdraw(double amount) throws InsufficientFundsException {
-        if (amount > this.balance) {
-            throw new InsufficientFundsException();
-        }
-        this.balance -= amount;
-    }
+    public abstract void withdraw(double amount) throws InsufficientFundsException;
 
     public void showBalance() {
         System.out.println("Current balance: " + this.balance);

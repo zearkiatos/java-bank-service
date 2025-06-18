@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public class ATM {
+public class ATM implements Authenticable {
     private Calculator calculator = new Calculator();
     
     public void start() {
@@ -38,6 +38,11 @@ public class ATM {
     public static void main(String[] args) {
         ATM atm = new ATM();
         atm.start();
+    }
+
+    @Override
+    public boolean authenticate(String pin) {
+       return true;
     }
 
 }

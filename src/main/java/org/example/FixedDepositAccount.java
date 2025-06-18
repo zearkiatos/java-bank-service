@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.utils.errorHandle.InsufficientFundsException;
+
 public class FixedDepositAccount extends Account {
     private double interestRate;
     private int maturityPeriod;
@@ -31,6 +33,19 @@ public class FixedDepositAccount extends Account {
 
     public int getMaturityPeriod() {
         return maturityPeriod;
+    }
+
+    @Override
+    public void deposit(double amount) {
+        this.setBalance(amount + this.getBalance());
+    }
+
+    @Override
+    public void withdraw(double amount) throws InsufficientFundsException {
+        if (amount > this.getBalance()) {
+            throw new InsufficientFundsException();
+        }
+        this.setBalance(this.getBalance() - amount);
     }
     
 }

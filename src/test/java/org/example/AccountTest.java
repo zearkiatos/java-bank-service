@@ -28,7 +28,7 @@ public class AccountTest {
     @Test
     public void testDeposit() {
         String expectedBalance = "Current balance: 100";
-        Account account = new Account("123456789", 0);
+        Account account = new SavingsAccount("123456789", 0, 0);
         account.deposit(100);
 
         account.showBalance();
@@ -39,7 +39,7 @@ public class AccountTest {
     @Test
     public void testWithdraw() {
         String expectedBalance = "Current balance: 50";
-        Account account = new Account("123456789", 0);
+        Account account = new SavingsAccount("123456789", 0, 0);
         account.deposit(100);
         try {
             account.withdraw(50);
@@ -54,7 +54,7 @@ public class AccountTest {
 
     @Test
     public void testWithdrawInsufficientFunds() {
-        Account account = new Account("123456789", 0);
+        Account account = new SavingsAccount("123456789", 0, 0);
         account.deposit(50);
         try {
             account.withdraw(100);
@@ -66,7 +66,7 @@ public class AccountTest {
     @Test
     public void testShowBalance() {
         String expectedBalance = "Current balance: 0.0";
-        Account account = new Account("123456789", 0);
+        Account account = new SavingsAccount("123456789", 0, 0);
 
         account.showBalance();
 
@@ -75,7 +75,7 @@ public class AccountTest {
 
     @Test
     public void testGetAccountNumber() {
-        Account account = new Account("123456789", 0);
+        Account account = new SavingsAccount("123456789", 0, 0);
         String accountNumber = "123456789";
 
         account.setAccountNumber(accountNumber);
@@ -85,7 +85,7 @@ public class AccountTest {
 
     @Test 
     public void testGetBalance() {
-        Account account = new Account("123456789", 1000);
+        Account account = new SavingsAccount("123456789", 1000, 0);
         double expectedBalance = 1000.0;
 
         assertEquals(account.getBalance(), expectedBalance);
@@ -93,7 +93,7 @@ public class AccountTest {
 
     @Test
     public void testSetBalance() {
-        Account account = new Account("123456789", 0);
+        Account account = new SavingsAccount("123456789", 0, 0);
         double newBalance = 500.0;
 
         account.setBalance(newBalance);

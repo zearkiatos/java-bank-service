@@ -1,0 +1,30 @@
+###################################
+# saludtechalpes-medical-history-service
+###################################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-bank-service
+  labels:
+    app: java-bank-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-bank-service
+  template:
+    metadata:
+      labels:
+        app: java-bank-service
+    spec:
+      containers:
+        - name: java-bank-service
+          image: caprilespe/java-bank-service:1.0.0
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "500m"
+            limits:
+              memory: "256Mi"
+              cpu: "1024m"
+          imagePullPolicy: Always

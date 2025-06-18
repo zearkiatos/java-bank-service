@@ -10,7 +10,6 @@ public class CheckingAccount extends Account {
         this.overdraftLimit = overdraftLimit;
     }
 
-    @Override
     public void withdraw(double amount) throws InsufficientFundsException {
         if (amount > this.getBalance() + overdraftLimit) {
             throw new InsufficientFundsException();
@@ -24,5 +23,9 @@ public class CheckingAccount extends Account {
 
     public void setOverdraftLimit(double overdraftLimit) {
         this.overdraftLimit = overdraftLimit;
+    }
+
+    public void deposit(double amount) {
+        this.setBalance(amount + this.getBalance());
     }
 }
