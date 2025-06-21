@@ -2,7 +2,6 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.example.Account;
 
 public class ATMSystem {
     private List<Account> accounts;
