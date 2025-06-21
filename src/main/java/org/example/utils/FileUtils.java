@@ -15,4 +15,13 @@ public abstract class FileUtils {
         System.out.println("Error reading file: " + e.getMessage());
     }
     }
+
+    public static void removeFile(String filePath) {
+        java.io.File file = new java.io.File(filePath);
+        if (file.delete()) {
+            System.out.println("File deleted successfully: " + filePath);
+        } else {
+            System.out.println("Failed to delete the file: " + filePath);
+        }
+    }
 }
