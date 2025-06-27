@@ -17,6 +17,12 @@ run:
 	make build
 	java -cp target org.example.Main
 
+package:
+	mvn clean package
+
+gradle-build:
+	gradle build
+
 set-env:
 	sdk env
 

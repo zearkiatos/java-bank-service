@@ -22,6 +22,14 @@ run() {
     java -cp target org.example.Main
 }
 
+package() {
+    mvn clean package
+}
+
+gradle_build() {
+    gradle build
+}
+
 set_env() {
     sdk env
 }
