@@ -34,3 +34,7 @@ test:
 
 install:
 	mvn clean install -U
+
+java-debugger:
+	java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -jar ./target/java-bank-service-1.0-SNAPSHOT.jar
+	jdb -attach 5005
