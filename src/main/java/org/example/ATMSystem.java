@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ATMSystem {
     private List<Account> accounts;
+    private List<Transaction> transaction;
 
     public ATMSystem() {
         this.accounts = new ArrayList<>();
